@@ -7,9 +7,10 @@ import MySQLdb
 class save_to_mysql():
     def save_weather(self, weather_data):
         conn = MySQLdb.connect(
-            host='localhost',
+            host='rm-uf61zu38p9t1h913mo.mysql.rds.aliyuncs.com',
             port=3306,
             user='root',
+            passwd='Xyg708500',
             db='weather'
         )
         cur = conn.cursor()
