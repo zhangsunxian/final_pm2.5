@@ -1,3 +1,3 @@
 isStop = 0
-second = 5
+second = 10
 stateText = '未开始'

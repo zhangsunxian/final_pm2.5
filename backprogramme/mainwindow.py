@@ -44,9 +44,9 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralWidget)
         self.label.setGeometry(QtCore.QRect(170, 10, 161, 51))
         self.label.setObjectName("label")
-        self.button_5s = QtWidgets.QPushButton(self.centralWidget)
-        self.button_5s.setGeometry(QtCore.QRect(360, 120, 113, 32))
-        self.button_5s.setObjectName("button_5s")
+        self.button_10s = QtWidgets.QPushButton(self.centralWidget)
+        self.button_10s.setGeometry(QtCore.QRect(360, 120, 113, 32))
+        self.button_10s.setObjectName("button_10s")
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -63,5 +63,5 @@ class Ui_MainWindow(object):
         self.labelState.setText(_translate("MainWindow", "状态显示栏："))
         self.buttonQuit.setText(_translate("MainWindow", "quit"))
         self.label.setText(_translate("MainWindow", "PM25及天气数据入库系统"))
-        self.button_5s.setText(_translate("MainWindow", "/5s(测试)"))
+        self.button_10s.setText(_translate("MainWindow", "/10s(测试)"))
 

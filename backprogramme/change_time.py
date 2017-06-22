@@ -13,5 +13,5 @@ class change_time:
     def day_time(self):
         global_variable.second = self.sleeptime(24, 0, 0)
 
-    def sec5_time(self):
-        global_variable.second = self.sleeptime(0, 0, 5)
+    def sec10_time(self):
+        global_variable.second = self.sleeptime(0, 0, 10)

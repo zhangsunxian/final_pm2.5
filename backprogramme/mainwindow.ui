@@ -141,7 +141,7 @@
      <string>PM25及天气数据入库系统</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="button_5s">
+   <widget class="QPushButton" name="button_10s">
     <property name="geometry">
      <rect>
       <x>360</x>
@@ -151,7 +151,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>/5s(测试)</string>
+     <string>/10s(测试)</string>
     </property>
    </widget>
   </widget>

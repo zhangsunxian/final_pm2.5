@@ -93,8 +93,7 @@ class weather:
 
     def choose_city(self):
         print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), u'你好')
-        citys = ['北京']
-        # citys = ['北京', '上海', '广州', '深圳', '杭州', '天津', '成都', '南京', '西安', '武汉']
+        citys = ['北京', '上海', '广州', '深圳', '杭州', '天津', '成都', '南京', '西安', '武汉']
         for i in range(len(citys)):
             weather_data = self.check_weather(citys[i])
             self.save_weather(weather_data)
@@ -109,7 +108,7 @@ class mywindow(QtWidgets.QWidget, Ui_MainWindow):
         self.buttonStop.clicked.connect(self.buttonStop_clicked)
         self.buttonHour.clicked.connect(self.buttonHour_clicked)
         self.buttonDay.clicked.connect(self.buttonDay_clicked)
-        self.button_5s.clicked.connect(self.button_5s_clicked)
+        self.button_10s.clicked.connect(self.button_10s_clicked)
         self.textState.setText(global_variable.stateText)
 
     @QtCore.pyqtSlot()
@@ -124,7 +123,7 @@ class mywindow(QtWidgets.QWidget, Ui_MainWindow):
 
     @QtCore.pyqtSlot()
     def buttonStop_clicked(self):
-        print('123')
+        # print('123')
         global_variable.stateText = 'stop'
         self.textState.setText(global_variable.stateText)
         global_variable.isStop = 1
@@ -132,7 +131,7 @@ class mywindow(QtWidgets.QWidget, Ui_MainWindow):
     @QtCore.pyqtSlot()
     def buttonHour_clicked(self):
         from change_time import change_time
-        print('hourtime')
+        # print('hourtime')
         self.change_time_this = change_time()
         self.change_time_this.hour_time()
         global_variable.stateText = 'start' + ' ' + '%s' % global_variable.second + 's'
@@ -142,19 +141,19 @@ class mywindow(QtWidgets.QWidget, Ui_MainWindow):
     def buttonDay_clicked(self):
         self.textState.setText(global_variable.stateText)
         from change_time import change_time
-        print('daytime')
+        # print('daytime')
         self.change_time_this = change_time()
         self.change_time_this.day_time()
         global_variable.stateText = 'start' + ' ' + '%s' % global_variable.second + 's'
         self.textState.setText(global_variable.stateText)
 
     @QtCore.pyqtSlot()
-    def button_5s_clicked(self):
+    def button_10s_clicked(self):
         self.textState.setText(global_variable.stateText)
         from change_time import change_time
-        print('5s')
+        # print('10s')
         self.change_time_this = change_time()
-        self.change_time_this.sec5_time()
+        self.change_time_this.sec10_time()
         global_variable.stateText = 'start' + ' ' + '%s' % global_variable.second + 's'
         self.textState.setText(global_variable.stateText)
 
