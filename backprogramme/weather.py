@@ -4,7 +4,7 @@
 import pymysql
 import urllib.request, urllib.parse, sys
 import json
-import datetime
+import datetime, time
 from mainwindow import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 import global_variable
@@ -29,11 +29,21 @@ class weather:
                 CREATE TABLE IF NOT EXISTS weather_today(
                 cityname VARCHAR(10),
                 week VARCHAR(10),
+                time_num INT (20),
                 time VARCHAR(20),
                 now_temperature VARCHAR (10),
                 weather VARCHAR(10),
                 day_temperature VARCHAR (10),
-                wind VARCHAR(20)
+                wind VARCHAR(20),
+                index_cold VARCHAR(150),
+                index_air VARCHAR(150),
+                index_clothes VARCHAR(150),
+                so2 INT(5),
+                no2 INT(5),
+                co INT(5),
+                o3 INT(5),
+                pm10 INT(5),
+                pm25 INT(5)
               )
               """
         cur.execute(sql)
@@ -55,7 +65,7 @@ class weather:
         )
         cur = conn.cursor()
 
-        sql_insert_weather = "insert into weather_today(cityname,week,time,now_temperature,weather,day_temperature,wind) values(%s,%s,%s,%s,%s,%s,%s)"
+        sql_insert_weather = "insert into weather_today(cityname,week,time_num,time,now_temperature,weather,day_temperature,wind,index_cold,index_air,index_clothes,so2,no2,co,o3,pm10,pm25) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
         cur.execute(sql_insert_weather,
                     weather_data)
@@ -82,17 +92,30 @@ class weather:
         weather_data = [
             weather_json['result']['city'],
             weather_json['result']['week'],
+            time.time(),
             datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             weather_json['result']['temp'],
             weather_json['result']['weather'],
             weather_json['result']['templow'] + '~' + weather_json['result']['temphigh'],
             weather_json['result']['winddirect'] + '' + weather_json['result']['windpower'],
-            # weather_json['result']['index']['iname']+''+weather_json['result']['index']['ivalue']+''+weather_json['result']['index']['detail'],
+            weather_json['result']['index'][3]['iname'] + ':' + weather_json['result']['index'][3]['ivalue'] + ' ' +
+            weather_json['result']['index'][3]['detail'],
+            weather_json['result']['index'][5]['iname'] + ':' + weather_json['result']['index'][5]['index'] + ' ' +
+            weather_json['result']['index'][5]['detail'],
+            weather_json['result']['index'][6]['iname'] + ':' + weather_json['result']['index'][6]['ivalue'] + ' ' +
+            weather_json['result']['index'][6]['detail'],
+            weather_json['result']['aqi']['so2'],
+            weather_json['result']['aqi']['no2'],
+            weather_json['result']['aqi']['co'],
+            weather_json['result']['aqi']['o3'],
+            weather_json['result']['aqi']['pm10'],
+            weather_json['result']['aqi']['pm2_5']
         ]
         return weather_data
 
     def choose_city(self):
-        print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), u'你好')
+        # self.create_weather_table()
+        # print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), u'你好')
         citys = ['北京', '上海', '广州', '深圳', '杭州', '天津', '成都', '南京', '西安', '武汉']
         for i in range(len(citys)):
             weather_data = self.check_weather(citys[i])

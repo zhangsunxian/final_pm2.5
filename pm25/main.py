@@ -18,7 +18,7 @@ def scan(city_name):
         cursorclass=pymysql.cursors.DictCursor
     )
     cur = conn.cursor()
-    sql = "select * from weather_today WHERE cityname ='%s'" % (city_name)
+    sql = "select * from weather_today WHERE cityname ='%s',time_num= (select max(time_num) from weather_today" % (city_name)
     cur.execute(sql)
     results = cur.fetchall()
     # for row in results:
