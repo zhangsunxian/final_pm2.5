@@ -88,6 +88,7 @@ class weather:
         request.add_header('Authorization', 'APPCODE ' + appcode)
         response = urllib.request.urlopen(request)
         content = response.read()
+        content = content.decode('utf8')
         weather_json = json.loads(content)
         weather_data = [
             weather_json['result']['city'],
@@ -137,8 +138,9 @@ class mywindow(QtWidgets.QWidget, Ui_MainWindow):
     @QtCore.pyqtSlot()
     def buttonStart_clicked(self):
         global_variable.isStop = 0
-        global_variable.stateText = 'start' + ' ' + '%s' % global_variable.second + 's'
-        self.textState.setText(global_variable.stateText)
+        global_variable.stateText = '已开始'
+        stateText = global_variable.stateText + ' ' + 'start' + ' ' + '%s' % global_variable.second + 's'
+        self.textState.setText(stateText)
 
         from startWork import start_work
         self.start_this = start_work()
@@ -157,8 +159,8 @@ class mywindow(QtWidgets.QWidget, Ui_MainWindow):
         # print('hourtime')
         self.change_time_this = change_time()
         self.change_time_this.hour_time()
-        global_variable.stateText = 'start' + ' ' + '%s' % global_variable.second + 's'
-        self.textState.setText(global_variable.stateText)
+        stateText = global_variable.stateText + ' ' + 'start' + ' ' + '%s' % global_variable.second + 's'
+        self.textState.setText(stateText)
 
     @QtCore.pyqtSlot()
     def buttonDay_clicked(self):
@@ -167,8 +169,8 @@ class mywindow(QtWidgets.QWidget, Ui_MainWindow):
         # print('daytime')
         self.change_time_this = change_time()
         self.change_time_this.day_time()
-        global_variable.stateText = 'start' + ' ' + '%s' % global_variable.second + 's'
-        self.textState.setText(global_variable.stateText)
+        stateText = global_variable.stateText + ' ' + 'start' + ' ' + '%s' % global_variable.second + 's'
+        self.textState.setText(stateText)
 
     @QtCore.pyqtSlot()
     def button_10s_clicked(self):
@@ -177,8 +179,8 @@ class mywindow(QtWidgets.QWidget, Ui_MainWindow):
         # print('10s')
         self.change_time_this = change_time()
         self.change_time_this.sec10_time()
-        global_variable.stateText = 'start' + ' ' + '%s' % global_variable.second + 's'
-        self.textState.setText(global_variable.stateText)
+        stateText = global_variable.stateText + ' ' + 'start' + ' ' + '%s' % global_variable.second + 's'
+        self.textState.setText(stateText)
 
 
 if __name__ == "__main__":

@@ -74,7 +74,12 @@
                 re += "<li>城市名称：" + data.cityname + '</li>';
                 re += "<li>星期：" + data.week + '</li>';
                 re += "<li>现在温度：" + data.now_temperature + '</li>';
+                re += "<li>最低最高温度：" + data.day_temperature + '</li>';
                 re += "<li>天气：" + data.weather + '</li>';
+                re += "<li>推荐：" + data.index_cold + '</li>';
+                re += "<li>推荐：" + data.index_clothes + '</li>';
+                re += "<li>pm25指数：" + data.pm25 + '</li>';
+                re += "<li>推荐：" + data.index_air + '</li>';
                 re += "</ul>"
                 $('#container').html(re)
             },

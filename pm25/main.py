@@ -18,13 +18,18 @@ def scan(city_name):
         cursorclass=pymysql.cursors.DictCursor
     )
     cur = conn.cursor()
-    sql = "select * from weather_today WHERE cityname ='%s',time_num= (select max(time_num) from weather_today" % (city_name)
+    # sql = "select * from weather_today WHERE cityname ='%s',(select max(time_num) from weather_today)-10<=time_num" % (city_name)
+    sql = "select * from weather_today WHERE time_num>=(select max(time_num) from weather_today)-10 and cityname ='%s'" % (
+        city_name)
     cur.execute(sql)
     results = cur.fetchall()
     # for row in results:
     json_result = {'cityname': results[0]['cityname'], 'week': results[0]['week'],
                    'now_temperature': results[0]['now_temperature'],
-                   'weather': results[0]['weather']}
+                   'day_temperature':results[0]['day_temperature'],
+                   'weather': results[0]['weather'], 'index_cold': results[0]['index_cold'],
+                   'index_air': results[0]['index_air'], 'index_clothes': results[0]['index_clothes'],
+                   'pm25': results[0]['pm25']}
     cur.close()
     conn.commit()
     conn.close()
